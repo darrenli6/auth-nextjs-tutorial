@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { executeAction } from "@/lib/executeAction";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { GoogleSignIn } from "@/components/google-sign-in";
 
 const Page = async () => {
   const session = await auth();
@@ -17,6 +18,7 @@ const Page = async () => {
       <h1 className="text-2xl font-bold text-center mb-6">Sign In</h1>
 
       <GithubSignIn />
+      <GoogleSignIn />
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
