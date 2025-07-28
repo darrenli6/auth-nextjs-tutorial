@@ -46,6 +46,12 @@ Happy coding! 🚀
 
 npx auth secret
 
+https://www.prisma.io/docs
+
+
+crud
+
+https://www.prisma.io/docs/orm/prisma-client/queries/crud
 
 1. 首先生成 Prisma 客户端
 
@@ -101,3 +107,21 @@ npx prisma generate
 # 创建新的数据库和迁移
 npx prisma migrate dev --name init
 
+
+
+```
+Error: P3014
+
+Prisma Migrate could not create the shadow database. Please make sure the database user has permission to create databases. Read more about the shadow database (and workarounds) at https://pris.ly/d/migrate-shadow
+
+Original error: Error code: P1010
+
+User was denied access on the database `prisma_migrate_shadow_db_1631ace2-614d-4ade-bc0c-5420a12540c3`
+
+```
+
+
+您想在现有数据库中创建表，而不需要 Prisma 创建新的数据库。这个错误是因为 Prisma Migrate 试图创建影子数据库（shadow database）来验证迁移。
+
+# 直接推送 schema 到现有数据库，不创建迁移文件
+npx prisma db push

@@ -1,11 +1,19 @@
 import { SignOut } from "@/components/sign-out";
 import { auth } from "@/lib/auth";
+import db from "@/lib/db/db";
 import { redirect } from "next/navigation";
 
 const Page = async () => {
   const session = await auth();
   console.log(session);
   if (!session) redirect("/sign-in");
+
+  const user = await db.user.findUnique({
+    where: {
+      email: "darren94me@gmail.com",
+    },
+  });
+  console.log("user", user);
 
   return (
     <>

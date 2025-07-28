@@ -5,9 +5,20 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { GithubSignIn } from "@/components/github-sign-in";
 import { auth } from "@/lib/auth";
+import { GoogleSignIn } from "@/components/google-sign-in";
+import db from "@/lib/db/db";
 
 const Page = async () => {
   const session = await auth();
+  console.log(session);
+
+  const user = await db.user.findUnique({
+    where: {
+      email: "darren94me@gmail.com",
+    },
+  });
+  console.log("user", user);
+
   if (session) redirect("/");
 
   return (
@@ -15,6 +26,7 @@ const Page = async () => {
       <h1 className="text-2xl font-bold text-center mb-6">Create Account</h1>
 
       <GithubSignIn />
+      <GoogleSignIn />
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
