@@ -1,6 +1,7 @@
 import { SignOut } from "@/components/sign-out";
 import { auth } from "@/lib/auth";
 import db from "@/lib/db/db";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
 const Page = async () => {
@@ -19,6 +20,15 @@ const Page = async () => {
     <>
       <div className="bg-gray-100 rounded-lg p-4 text-center mb-6">
         <p className="text-gray-600">Signed in as:</p>
+        <p>
+        <Image
+          src={session?.user?.image ?? ""}
+          alt="User avatar"
+          width={32}
+          height={32}
+          className="rounded-full"
+        />
+        </p>
         <p className="font-medium">{session.user?.email}</p>
       </div>
 
